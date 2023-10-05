@@ -7,6 +7,10 @@ import rigoImage from "../../img/rigo-baby.jpg";
 const Home = () => {
 	const [inputValue, setInputValue] = useState("")
 	const [todos, setTodos] = useState([])
+	const eliminateTask = (index) => {
+		setTodos(todos.filter(
+			(t, currentIndex) => index != currentIndex))
+	}
 	const addTask = (event) => {
 		console.log(event.key)
 		if (event.key == "Enter") {
@@ -29,12 +33,13 @@ const Home = () => {
 
 				</li>
 				{todos.map((item, index) =>
-					<li> {item} {" "}
+					
+					<li className="d-flex justify-content-between w-100"> {item} {" "}				
 					<i 
-						class="fa-solid fa-trash-can" 
-							onClick={() => setTodos(todos.filter(
-								(t, currentIndex) => index != currentIndex))}></i>
-					</li>)}			
+						className="fa-solid fa-trash" 
+							onClick={() => eliminateTask (index)}></i>
+					</li>)}		
+						
 			</ul>
 			<div>{todos.length} tareas</div>
 		</div>
